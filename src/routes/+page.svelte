@@ -5,31 +5,29 @@
   <title>Puzzle Place</title>
 </head>
 
-<body>
-  <main>
+<main>
+  <p>
+    Welcome to the Puzzle Place! You can find a small variety of games and
+    puzzles to play. Enjoy your time here!
+  </p>
+  <section>
+    <h2>The Game and Puzzle List</h2>
     <p>
-      Welcome to the Puzzle Place! You can find a small variety of games and
-      puzzles to play. Enjoy your time here!
+      Below is the list of games to play on this site. More games are coming
+      soon.
     </p>
-    <section>
-      <h2>The Game and Puzzle List</h2>
-      <p>
-        Below is the list of games to play on this site. More games are coming
-        soon.
-      </p>
-      <ul class="games-grid">
-        <li class="games-grid-link">
-          <a href="/">Simple Crossword</a>
-        </li>
-        <li class="games-grid-link">
-          <a href="/2048">2048</a>
-        </li>
-        <li class="games-grid-link">Coming soon!</li>
-        <li class="games-grid-link">Coming soon!</li>
-      </ul>
-    </section>
-  </main>
-</body>
+    <ul class="games-grid">
+      <li class="games-grid-link">
+        <a href="/">Simple Crossword</a>
+      </li>
+      <li class="games-grid-link">
+        <a href="/2048">2048</a>
+      </li>
+      <li class="games-grid-link">Coming soon!</li>
+      <li class="games-grid-link">Coming soon!</li>
+    </ul>
+  </section>
+</main>
 
 <style>
   .games-grid {

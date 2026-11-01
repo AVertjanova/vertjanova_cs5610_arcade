@@ -1,11 +1,10 @@
 <nav class="navbar">
-  <div>this is the navbar</div>
   <header class="logo">
     <a class="logo" href="/"><h1>Puzzle Place</h1></a>
   </header>
   <ul class="nav-link-list">
     <li>
-      <a class="cur-nav-link" href="/crossword">Crossword</a>
+      <a class="nav-link" href="/">Games</a>
     </li>
     <li>
       <a class="nav-link" href="/about">About</a>
@@ -27,11 +26,14 @@
   .logo {
     color: var(--light);
     padding-left: 20px;
+    text-decoration: none;
+    line-height: 1.1;
   }
 
   .nav-link-list {
     display: flex;
     list-style-type: none;
+    align-items: baseline;
     padding: 0;
     margin: 0;
     gap: 1rem;
