@@ -8,6 +8,15 @@
     [0, 0, 0, 0],
   ]);
 
+  $effect(() => {
+    if (curScore > highScore) {
+      highScore = curScore;
+    }
+  });
+
+  let curScore = $derived.by(checkScore);
+  let highScore = $state(0);
+
   function reset() {
     console.log("in reset function");
     board = [
@@ -16,6 +25,18 @@
       [0, 0, 0, 0],
       [0, 0, 0, 0],
     ];
+  }
+
+  function checkScore() {
+    let largest = 2;
+    for (let i = 0; i < 4; i++) {
+      for (let j = 0; j < 4; j++) {
+        if (board[i][j] > largest) {
+          largest = board[i][j];
+        }
+      }
+    }
+    return largest;
   }
 
   function spawn(board) {
@@ -173,37 +194,19 @@
 
   function handleKeyDown(event) {
     if (event.key === "ArrowDown") {
-      console.log("down");
       move(board, "down");
     } else if (event.key === "ArrowUp") {
-      console.log("up");
       move(board, "up");
     } else if (event.key === "ArrowRight") {
-      console.log("right");
       move(board, "right");
     } else if (event.key === "ArrowLeft") {
-      console.log("left");
-      move(board, "left");
-    }
-  }
-
-  function handleKeyRight(event) {
-    if (event.key === "ArrowRight") {
-      console.log("right");
-      move(board, "right");
-    }
-  }
-
-  function handleKeyLeft(event) {
-    if (event.key === "ArrowLeft") {
-      console.log("left");
       move(board, "left");
     }
   }
 </script>
 
 <div class="pageLayout">
-  <div class="board">
+  <div class="board" aria-label="2048 game board">
     {#each board as row, i}
       {#each row as cellValue, j}
         <Cell value={cellValue} row={i} column={j} />
@@ -211,19 +214,24 @@
     {/each}
   </div>
   <button type="button" onclick={() => reset()}>New Game</button>
+  <p>Current Score: {curScore}</p>
+  <p>High Score: {highScore}</p>
 </div>
 
 <svelte:window onkeydown={handleKeyDown} />
 
-<!--  hours worked 6.5 
+<!--  hours worked 7.5 
 Todo: 
 Canmove always returns true? Which means has moves always returns true
 make game over condition and pop up?
+
 Make mobile version work
-Aria labels for accessability
-design page to look good and centered etc
+Aria labels for accessability? done? Need more?
+
 transition animations?
-restart button -->
+
+
+-->
 
 <style>
   .board {
