@@ -8,6 +8,16 @@
     [0, 0, 0, 0],
   ]);
 
+  function reset() {
+    console.log("in reset function");
+    board = [
+      [0, 0, 0, 0],
+      [0, 0, 2, 0],
+      [0, 0, 0, 0],
+      [0, 0, 0, 0],
+    ];
+  }
+
   function spawn(board) {
     let randRow = Math.floor(Math.random() * 4);
     let randCol = Math.floor(Math.random() * 4);
@@ -192,21 +202,39 @@
   }
 </script>
 
-<div class="board">
-  {#each board as row, i}
-    {#each row as cellValue, j}
-      <Cell value={cellValue} row={i} column={j} />
+<div class="pageLayout">
+  <div class="board">
+    {#each board as row, i}
+      {#each row as cellValue, j}
+        <Cell value={cellValue} row={i} column={j} />
+      {/each}
     {/each}
-  {/each}
+  </div>
+  <button type="button" onclick={() => reset()}>New Game</button>
 </div>
 
 <svelte:window onkeydown={handleKeyDown} />
 
-// hours worked 5 //
+<!--  hours worked 6.5 
+Todo: 
+Canmove always returns true? Which means has moves always returns true
+make game over condition and pop up?
+Make mobile version work
+Aria labels for accessability
+design page to look good and centered etc
+transition animations?
+restart button -->
 
 <style>
   .board {
     display: grid;
-    grid-template-columns: repeat(4, 100px);
+    grid-template-columns: repeat(4, max-content);
+    background-color: #4b3619;
+    margin: 20px;
+    border-radius: 10px;
+  }
+  .pageLayout {
+    display: grid;
+    justify-content: center;
   }
 </style>
