@@ -8,6 +8,27 @@
     [0, 0, 0, 0],
   ]);
 
+  function spawn(board) {
+    let randRow = Math.floor(Math.random() * 4);
+    let randCol = Math.floor(Math.random() * 4);
+    let placed = false;
+
+    while (placed === false) {
+      if (board[randRow][randCol] === 0) {
+        placed = true;
+        console.log("Placed");
+        if ((randRow + randCol) % 2 === 0) {
+          board[randRow][randCol] = 2;
+        } else {
+          board[randRow][randCol] = 4;
+        }
+      } else {
+        randRow = Math.floor(Math.random() * 4);
+        randCol = Math.floor(Math.random() * 4);
+      }
+    }
+  }
+
   function canMove(board, dir) {
     for (let i = 0; i < 4; i++) {
       for (let j = 0; j < 4; j++) {
@@ -137,6 +158,7 @@
         }
       }
     }
+    spawn(board);
   }
 
   function handleKeyDown(event) {
@@ -180,7 +202,7 @@
 
 <svelte:window onkeydown={handleKeyDown} />
 
-// hours worked 4
+// hours worked 5 //
 
 <style>
   .board {
