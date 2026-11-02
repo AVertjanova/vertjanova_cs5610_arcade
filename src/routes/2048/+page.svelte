@@ -16,6 +16,7 @@
 
   let curScore = $derived.by(checkScore);
   let highScore = $state(0);
+  let gameOver = $state(false);
 
   function reset() {
     console.log("in reset function");
@@ -25,6 +26,7 @@
       [0, 0, 0, 0],
       [0, 0, 0, 0],
     ];
+    gameOver = false;
   }
 
   function checkScore() {
@@ -47,15 +49,18 @@
     while (placed === false) {
       if (board[randRow][randCol] === 0) {
         placed = true;
-        console.log("Placed");
         if ((randRow + randCol) % 2 === 0) {
           board[randRow][randCol] = 2;
         } else {
           board[randRow][randCol] = 4;
         }
       } else {
-        randRow = Math.floor(Math.random() * 4);
-        randCol = Math.floor(Math.random() * 4);
+        if (hasMoves) {
+          randRow = Math.floor(Math.random() * 4);
+          randCol = Math.floor(Math.random() * 4);
+        } else {
+          placed = true;
+        }
       }
     }
   }
@@ -66,6 +71,7 @@
         if (dir === "down") {
           if (board[i][j] != 0 && i + 1 <= 3) {
             if (board[i + 1][j] === 0 || board[i + 1][j] === board[i][j]) {
+              console.log("can move down");
               return true;
             }
           }
@@ -74,6 +80,7 @@
         if (dir === "right") {
           if (board[i][j] != 0 && j + 1 <= 3) {
             if (board[i][j + 1] === 0 || board[i][j + 1] === board[i][j]) {
+              console.log("can move right");
               return true;
             }
           }
@@ -103,10 +110,10 @@
 
   function hasMoves(board) {
     if (
-      canMove(board, up) ||
-      canMove(board, down) ||
-      canMove(board, left) ||
-      canMove(board, right)
+      canMove(board, "up") ||
+      canMove(board, "down") ||
+      canMove(board, "left") ||
+      canMove(board, "right")
     ) {
       return true;
     } else {
@@ -115,6 +122,7 @@
   }
 
   function move(board, dir) {
+    let moved = false;
     if (dir === "down") {
       while (canMove(board, dir)) {
         for (let i = 3; i >= 0; i--) {
@@ -123,10 +131,12 @@
               if (board[i + 1][j] === 0) {
                 board[i + 1][j] = board[i][j];
                 board[i][j] = 0;
+                moved = true;
               }
               if (board[i + 1][j] === board[i][j]) {
                 board[i + 1][j] = board[i + 1][j] * 2;
                 board[i][j] = 0;
+                moved = true;
               }
             }
           }
@@ -142,10 +152,12 @@
               if (board[i - 1][j] === 0) {
                 board[i - 1][j] = board[i][j];
                 board[i][j] = 0;
+                moved = true;
               }
               if (board[i - 1][j] === board[i][j]) {
                 board[i - 1][j] = board[i - 1][j] * 2;
                 board[i][j] = 0;
+                moved = true;
               }
             }
           }
@@ -161,10 +173,12 @@
               if (board[i][j + 1] === 0) {
                 board[i][j + 1] = board[i][j];
                 board[i][j] = 0;
+                moved = true;
               }
               if (board[i][j + 1] === board[i][j]) {
                 board[i][j + 1] = board[i][j + 1] * 2;
                 board[i][j] = 0;
+                moved = true;
               }
             }
           }
@@ -179,17 +193,25 @@
               if (board[i][j - 1] === 0) {
                 board[i][j - 1] = board[i][j];
                 board[i][j] = 0;
+                moved = true;
               }
               if (board[i][j - 1] === board[i][j]) {
                 board[i][j - 1] = board[i][j - 1] * 2;
                 board[i][j] = 0;
+                moved = true;
               }
             }
           }
         }
       }
     }
-    spawn(board);
+    if (moved === true) {
+      spawn(board);
+    }
+    if (!hasMoves(board)) {
+      gameOver = true;
+      console.log("game over");
+    }
   }
 
   function handleKeyDown(event) {
@@ -206,6 +228,9 @@
 </script>
 
 <div class="pageLayout">
+  {#if gameOver === true}
+    <h2>Game Over</h2>
+  {/if}
   <div class="board" aria-label="2048 game board">
     {#each board as row, i}
       {#each row as cellValue, j}
@@ -222,11 +247,8 @@
 
 <!--  hours worked 7.5 
 Todo: 
-Canmove always returns true? Which means has moves always returns true
-make game over condition and pop up?
 
 Make mobile version work
-Aria labels for accessability? done? Need more?
 
 transition animations?
 
