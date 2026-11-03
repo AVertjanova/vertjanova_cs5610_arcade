@@ -30,8 +30,9 @@
 
 <style>
   .cellBase {
-    height: 100px;
-    width: 100px;
+    height: clamp(100px, 30vw, 100px);
+    width: clamp(100px, 30vw, 100px);
+    aspect-ratio: 1;
     display: flex;
     justify-content: center;
     align-items: center;
