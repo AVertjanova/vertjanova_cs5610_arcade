@@ -1,4 +1,5 @@
 <script>
+  import { resolve } from "$app/paths";
 </script>
 
 <head>
@@ -18,10 +19,10 @@
     </p>
     <ul class="games-grid">
       <li class="games-grid-link">
-        <a href="/">Simple Crossword</a>
+        <a href={resolve("/")}>Simple Crossword</a>
       </li>
       <li class="games-grid-link">
-        <a href="/2048">2048</a>
+        <a href={resolve("/2048")}>2048</a>
       </li>
       <li class="games-grid-link">Coming soon!</li>
       <li class="games-grid-link">Coming soon!</li>

@@ -3,6 +3,8 @@
   import "./global_stylesheet.css";
   import Navbar from "#lib/assets/components/nav.svelte";
   let { children } = $props();
+
+  export const prerender = true;
 </script>
 
 <svelte:head>
