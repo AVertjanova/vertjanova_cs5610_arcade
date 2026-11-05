@@ -30,8 +30,8 @@
 
 <style>
   .cellBase {
-    height: clamp(100px, 30vw, 100px);
-    width: clamp(100px, 30vw, 100px);
+    height: 100%;
+    width: 100%;
     aspect-ratio: 1;
     display: flex;
     justify-content: center;
@@ -39,9 +39,9 @@
     font-size: x-large;
     color: #4b3619;
     border: 1px solid #856538;
-    margin: 5px;
     background-color: #4b3619;
     border-radius: 15px;
+    box-sizing: border-box;
   }
   .two {
     background-color: #fbf4e1;

@@ -45,9 +45,17 @@
     font-weight: bold;
   }
 
-  .cur-nav-link {
-    color: var(--light);
-    font-weight: bold;
+  @media (max-width: 500px) {
+    .nav-link-list {
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .navbar {
+      position: static;
+    }
+    .logo {
+      padding-left: 10px;
+    }
   }
 
   .nav-link:hover,

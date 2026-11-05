@@ -21,6 +21,6 @@
 		"#lib/*": "./src/lib/*"
 	},
 	"dependencies": {
-		"@avertjanova/arcade-core": "^1.0.1"
+		"@avertjanova/arcade-core": "^1.0.3"
 	}
 }

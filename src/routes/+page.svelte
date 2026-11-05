@@ -32,24 +32,28 @@
 <style>
   .games-grid {
     display: grid;
-    grid-template-columns: repeat(2, 12rem);
+    width: min(400px, 95%);
+    grid-template-columns: repeat(2, 1fr);
     grid-row-gap: 1.5rem;
     grid-column-gap: 1.5rem;
     list-style-type: none;
     justify-content: center;
     align-items: center;
+    padding: 0px;
+    margin-inline: auto;
   }
 
   .games-grid-link {
     border: var(--mid);
-    height: 10rem;
-    width: 10rem;
+    width: 100%;
+    aspect-ratio: 1;
     background-color: var(--mid);
     color: var(--light);
     font-size: 1rem;
     display: flex;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
   }
 
   .games-grid-link:hover {
