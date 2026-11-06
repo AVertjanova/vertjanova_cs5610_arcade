@@ -1,15 +1,19 @@
+<script>
+  import { resolve } from "$app/paths";
+</script>
+
 <nav class="navbar">
   <header class="logo">
-    <a class="logo" href="/"><h1>Puzzle Place</h1></a>
+    <h1>Puzzle Place</h1>
   </header>
   <ul class="nav-link-list">
     <li>
-      <a class="nav-link" href="/">Games</a>
+      <a class="nav-link" href={resolve("/")}>Games</a>
     </li>
     <li>
-      <a class="nav-link" href="/about">About</a>
+      <a class="nav-link" href={resolve("/about")}>About</a>
     </li>
-    <li><a class="nav-link" href="/contact">Contact</a></li>
+    <li><a class="nav-link" href={resolve("/contact")}>Contact</a></li>
   </ul>
 </nav>
 
