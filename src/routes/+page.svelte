@@ -19,7 +19,7 @@
     </p>
     <ul class="games-grid">
       <li class="games-grid-link">
-        <a href={resolve("/")}>Simple Crossword</a>
+        <a href={resolve("/crossword")}>Simple Crossword</a>
       </li>
       <li class="games-grid-link">
         <a href={resolve("/2048")}>2048</a>
